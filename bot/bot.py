@@ -24,7 +24,7 @@ class Bot(commands.Bot):
         """Load all the extensions in the exts/ folder."""
         logger.info("Start loading extensions from ./exts/")
         for extension in constants.EXTENSIONS.glob("*/[!_]*.py"):
-            dot_path = str(extension).replace(os.sep, ".").rstrip('.py')
+            dot_path = str(extension).replace(os.sep, ".").rstrip(".py")
             self.load_extension(dot_path)
             logger.info(f"Successfully loaded extension:  {dot_path}")
 
@@ -33,7 +33,8 @@ class Bot(commands.Bot):
         logger.info("Starting bot")
         if constants.TOKEN is None:
             raise EnvironmentError(
-                "token value is None. Make sure you have configured the TOKEN field in .env"
+                "token value is None. "
+                "Make sure you have configured the TOKEN field in .env"
             )
         super().run(constants.TOKEN)
 
