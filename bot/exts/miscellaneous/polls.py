@@ -4,6 +4,8 @@ from typing import Optional
 import discord
 from discord.ext import commands
 
+from bot import constants
+
 NUMBER_EMOJIS = {i: f"{i}\N{COMBINING ENCLOSING KEYCAP}" for i in range(1, 10)}
 
 
@@ -22,7 +24,7 @@ class Polls(commands.Cog):
         """Creates poll in the #polls channel on the given topic for given duration (in seconds).
         Usage: !poll duration topic: option1|option2|option3"""
 
-        channel = ctx.channel
+        channel = self.bot.get_channel(constants.Channels.polls)
         topic, args = args.split(":")  # separate poll topic and options
 
         options = {i + 1: option for i, option in enumerate(args.split("|"))}
